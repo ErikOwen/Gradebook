@@ -89,9 +89,9 @@ class AssignmentTableViewController: UITableViewController {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         if segue.identifier == "quakeDetails" {
-            if let dest = segue.destinationViewController as? ViewController, let cell = sender as? SectionTableViewCell {
-                //                dest.quake = cell.quake
-            }
+//            if let dest = segue.destinationViewController as? ViewController, let cell = sender as? SectionTableViewCell {
+//                //                dest.quake = cell.quake
+//            }
         }
     }
     
