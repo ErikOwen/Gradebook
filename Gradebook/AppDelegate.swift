@@ -17,8 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupLoader() {
         loader = GradebookURLLoader()
         
-        if let vc = window?.rootViewController as? LoginViewController {
+        if let vc = window?.rootViewController?.childViewControllers[0] as? LoginViewController {
             vc.loader = loader
+        }
+        else {
+            println("unable to pass loader")
         }
     }
     

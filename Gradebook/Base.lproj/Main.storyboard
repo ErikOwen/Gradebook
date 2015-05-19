@@ -68,7 +68,7 @@
                                 </state>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sHI-m9-MEm"/>
-                                    <segue destination="YBh-wZ-m8O" kind="show" id="knG-dk-fsW"/>
+                                    <segue destination="YBh-wZ-m8O" kind="show" identifier="loginToSectionSegue" id="knG-dk-fsW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgF-PJ-8Iz">

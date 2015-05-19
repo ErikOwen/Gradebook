@@ -11,6 +11,7 @@ import UIKit
 class LoginViewController: UIViewController {
 
     var loader: GradebookURLLoader?
+
     
     @IBAction func loginButtonPressed(sender: AnyObject) {
         println("Login button pressed");
@@ -42,6 +43,54 @@ class LoginViewController: UIViewController {
         /*Makes sure the password input is hidden*/
         passwordInput.secureTextEntry = true;
         
+    }
+    
+    func presentErrorPopUp() {
+        let alertController = UIAlertController(title: "Wrong Base URL", message:
+        "The base URL must be either https://users.csc.calpoly.edu/~bellardo/cgi-bin/grades.json or https://users.csc.calpoly.edu/~bellardo/cgi-bin/test/grades.json", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+    
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func presentLoginErrorPopUp() {
+        let alertController = UIAlertController(title: "Login Error", message:
+            "Sorry, the login credentials you provided were not recognized", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
+        if identifier == "loginToSectionSegue" {
+            println("Segue check worked!")
+            println("default base url is: " + baseUrlInput.text);
+            var baseURL = baseUrlInput.text
+            var name = usernameInput.text
+            var password = passwordInput.text
+            
+            if(baseURL != "https://users.csc.calpoly.edu/~bellardo/cgi-bin/grades.json" && baseURL != "https://users.csc.calpoly.edu/~bellardo/cgi-bin/test/grades.json") {
+                
+                presentErrorPopUp()
+                
+                return false;
+            }
+            else {
+                loader!.baseURL = baseURL
+                if loader!.loginWithUsername(name, andPassword: password) {
+                    println("Auth worked!")
+                    return true;
+                }
+                else {
+                    println("Auth failed!")
+                    presentLoginErrorPopUp()
+                    return false;
+                }
+
+            }
+        }
+        
+        return false;
     }
     
     override func didReceiveMemoryWarning() {
