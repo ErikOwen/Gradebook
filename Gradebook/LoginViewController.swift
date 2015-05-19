@@ -93,6 +93,13 @@ class LoginViewController: UIViewController {
         return false;
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "loginToSectionSegue" {
+            let dest: SectionTableViewController = segue.destinationViewController as! SectionTableViewController
+            dest.loader = loader
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         

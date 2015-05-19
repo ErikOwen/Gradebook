@@ -33,6 +33,14 @@ class Sections {
     func removeAllSections() {
         _sections.removeAll(keepCapacity: true);
     }
+    
+    func getSize() -> Int {
+        return _sections.count
+    }
+    
+    func getSectionAtPos(index: Int) -> Section {
+        return _sections[index]
+    }
 }
 
 class Enrollment {

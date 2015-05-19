@@ -10,22 +10,52 @@ import Foundation
 import UIKit
 
 class SectionTableViewCell: UITableViewCell {
-    //    var quake: Earthquake?
+        var section: Section?
 }
 
 class SectionTableViewController: UITableViewController {
     
-    var loader: GradebookURLLoader?
+    var loader: GradebookURLLoader? {
+        didSet {
+            loadSections()
+            refreshSections()
+        }
+    }
+    var sections: Sections? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+
+    func loadSections() {
+        let data = loader!.loadDataFromPath("?record=sections", error: nil)
+        
+        let str = NSString(data: data, encoding: NSUTF8StringEncoding)
+        
+        println("Data: \(str)")
+        
+        let json = JSON(data: data)
+        var tempSections: Sections = Sections();
+        
+        for (index, sectionJSON) in json["sections"] {
+            
+            let tempSection = Section()
+            
+            tempSection.course = sectionJSON["course"].stringValue
+            tempSection.dept = sectionJSON["dept"].stringValue
+            tempSection.term = sectionJSON["term"].stringValue
+            tempSection.termname = sectionJSON["termname"].stringValue
+            tempSection.title = sectionJSON["title"].stringValue
+            
+            tempSections.appendSection(tempSection)
+        }
+        
+        sections = tempSections
+    }
     
-    //    var quakes: Earthquakes? {
-    //        didSet {
-    //            tableView.reloadData()
-    //            quakes?.count.addCallback {
-    //                [unowned self] (oldValue: Int?, newValue: Int) -> Void in
-    //                self.tableView.reloadData()
-    //            }
-    //        }
-    //    }
+    func refreshSections() {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,28 +87,22 @@ class SectionTableViewController: UITableViewController {
         // Return the number of rows in the section.
         // println("count for section \(section)")
         
-        //        if let count =  quakes?.quakes.count {
-        //            return count
-        //        }
+        if let count =  sections?.getSize() {
+            return count
+        }
         
         return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("subtitleCell", forIndexPath: indexPath) as! SectionTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("sectionSubtitleCell", forIndexPath: indexPath) as! SectionTableViewCell
         
         // Configure the cell...
-        //        let quake = quakes?.quakes[indexPath.row]
-        //        cell.quake = quake
-        if indexPath.row < 5 {
-            cell.textLabel?.textColor = UIColor.redColor()
-        }
-        else {
-            cell.textLabel?.textColor = UIColor.blackColor()
-        }
+        let section = sections?.getSectionAtPos(indexPath.row)
+        cell.section = section
         
-        //        cell.textLabel?.text = quake?.place
-        //        cell.detailTextLabel?.text = quake?.mag
+        cell.textLabel?.text = section?.title
+        cell.detailTextLabel?.text = section?.course
         
         return cell
     }
