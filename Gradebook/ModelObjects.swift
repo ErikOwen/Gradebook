@@ -67,6 +67,14 @@ class Enrollments {
     func removeAllEnrollments() {
         _enrollments.removeAll(keepCapacity: true);
     }
+    
+    func getSize() -> Int {
+        return _enrollments.count
+    }
+    
+    func getEnrollmentnAtPos(index: Int) -> Enrollment {
+        return _enrollments[index]
+    }
 }
 
 class UserScore {

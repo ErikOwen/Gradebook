@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class EnrollmentTableViewCell: UITableViewCell {
-//    var quake: Earthquake?
+    var enrollment: Enrollment?
 }
 
 class EnrollmentTableViewController: UITableViewController {
@@ -27,35 +27,7 @@ class EnrollmentTableViewController: UITableViewController {
         }
     }
     
-//    func loadEnrollments() {
-//        if(loader != nil && section != nil) {
-//            let enrollmentsUrl: String = "?record=enrollments&term=" + section!.term! + "&course=" + section!.course!
-//            
-//            let data = loader!.loadDataFromPath(enrollmentsUrl, error: nil)
-//            
-//            let str = NSString(data: data, encoding: NSUTF8StringEncoding)
-//            
-//            println("Data: \(str)")
-//            
-//            let json = JSON(data: data)
-//            var tempEnrollments: Enrollments = Enrollments();
-//            
-//            for (index, enrollmentJSON) in json["enrollments"] {
-//                
-//                let tempEnrollment = Enrollment()
-//                
-//                tempEnrollment.first_name = enrollmentJSON["first_name"].stringValue
-//                tempEnrollment.middle_name = enrollmentJSON["middle_name"].stringValue
-//                tempEnrollment.last_name = enrollmentJSON["last_name"].stringValue
-//                tempEnrollment.username = enrollmentJSON["usernmae"].stringValue
-//                
-//                tempEnrollments.appendEnrollment(tempEnrollment)
-//            }
-//            
-//            enrollments = tempEnrollments
-//
-//        }
-//    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,32 +55,24 @@ class EnrollmentTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        // println("count for section \(section)")
-        
-//        if let count =  quakes?.quakes.count {
-//            return count
-//        }
+        if let enrollments =  enrollments {
+            return enrollments.getSize()
+        }
         
         return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("subtitleCell", forIndexPath: indexPath) as! SectionTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("enrollmentSubtitleCell", forIndexPath: indexPath) as! EnrollmentTableViewCell
         
         // Configure the cell...
-//        let quake = quakes?.quakes[indexPath.row]
-//        cell.quake = quake
-        if indexPath.row < 5 {
-            cell.textLabel?.textColor = UIColor.redColor()
-        }
-        else {
-            cell.textLabel?.textColor = UIColor.blackColor()
-        }
+        let enrollment = enrollments?.getEnrollmentnAtPos(indexPath.row)
+        cell.enrollment = enrollment
         
-//        cell.textLabel?.text = quake?.place
-//        cell.detailTextLabel?.text = quake?.mag
+        println("here is the username: " + enrollment!.username!);
+        
+        cell.textLabel?.text = enrollment!.first_name! + " " +  enrollment!.middle_name! + " " + enrollment!.last_name!
+        cell.detailTextLabel?.text = enrollment!.username!
         
         return cell
     }

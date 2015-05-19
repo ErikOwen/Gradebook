@@ -93,7 +93,7 @@ class GradebookLoader {
             tempEnrollment.first_name = enrollmentJSON["first_name"].stringValue
             tempEnrollment.middle_name = enrollmentJSON["middle_name"].stringValue
             tempEnrollment.last_name = enrollmentJSON["last_name"].stringValue
-            tempEnrollment.username = enrollmentJSON["usernmae"].stringValue
+            tempEnrollment.username = enrollmentJSON["username"].stringValue
             
             tempEnrollments.appendEnrollment(tempEnrollment)
         }
