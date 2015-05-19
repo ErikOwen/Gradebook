@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
         println("Test button pressed");
         usernameInput.text = "test";
         passwordInput.text = "sadf35cx90";
+        baseUrlInput.text = "https://users.csc.calpoly.edu/~bellardo/cgi-bin/test/grades.json";
         
     }
     
@@ -27,6 +28,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameInput: UITextField!
     
     @IBOutlet weak var passwordInput: UITextField!
+    
+    @IBOutlet weak var baseUrlInput: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
