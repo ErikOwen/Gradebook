@@ -16,6 +16,8 @@ class ScoreTableViewCell: UITableViewCell {
 
 class ScoreTableViewController: UITableViewController {
     
+    var loader: GradebookURLLoader?
+    
     //    var quakes: Earthquakes? {
     //        didSet {
     //            tableView.reloadData()

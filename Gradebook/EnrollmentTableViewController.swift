@@ -15,6 +15,8 @@ class EnrollmentTableViewCell: UITableViewCell {
 
 class EnrollmentTableViewController: UITableViewController {
     
+    var loader: GradebookURLLoader?
+    
 //    var quakes: Earthquakes? {
 //        didSet {
 //            tableView.reloadData()

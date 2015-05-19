@@ -10,8 +10,10 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    var loader: GradebookURLLoader?
+    
     @IBAction func loginButtonPressed(sender: AnyObject) {
-        println("Test button pressed");
+        println("Login button pressed");
     }
     
     @IBAction func testButtonPressed(sender: AnyObject) {

@@ -15,6 +15,8 @@ class SectionTableViewCell: UITableViewCell {
 
 class SectionTableViewController: UITableViewController {
     
+    var loader: GradebookURLLoader?
+    
     //    var quakes: Earthquakes? {
     //        didSet {
     //            tableView.reloadData()

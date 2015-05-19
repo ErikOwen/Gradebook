@@ -12,27 +12,18 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    private var loader: GradebookURLLoader?
+    var loader: GradebookURLLoader?
+    
+    func setupLoader() {
+        loader = GradebookURLLoader()
+        
+        if let vc = window?.rootViewController as? LoginViewController {
+            vc.loader = loader
+        }
+    }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        loader = GradebookURLLoader()
-        // Live data URL
-        // loader.baseURL = "https://users.csc.calpoly.edu/~bellardo/cgi-bin/grades.json"
-        
-        // Test data URL
-        loader!.baseURL = "https://users.csc.calpoly.edu/~bellardo/cgi-bin/test/grades.json"
-        if loader!.loginWithUsername("test", andPassword: "sadf35cx90") {
-            println("Auth worked!")
-            let data = loader!.loadDataFromPath("?record=sections", error: nil)
-            
-            let str = NSString(data: data, encoding: NSUTF8StringEncoding)
-            
-            println("Data: \(str)")
-        }
-        else {
-            println("Auth failed!")
-        }
-        
+        setupLoader()
         return true
     }
 

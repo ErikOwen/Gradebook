@@ -16,6 +16,8 @@ class AssignmentTableViewCell: UITableViewCell {
 
 class AssignmentTableViewController: UITableViewController {
     
+    var loader: GradebookURLLoader?
+    
     //    var quakes: Earthquakes? {
     //        didSet {
     //            tableView.reloadData()
