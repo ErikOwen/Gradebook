@@ -15,10 +15,9 @@ class SectionTableViewCell: UITableViewCell {
 
 class SectionTableViewController: UITableViewController {
     
-    var loader: GradebookURLLoader? {
+    var loader: GradebookLoader? {
         didSet {
-            loadSections()
-            refreshSections()
+            sections = loader!.loadSections()
         }
     }
     var sections: Sections? {
@@ -27,35 +26,6 @@ class SectionTableViewController: UITableViewController {
         }
     }
 
-    func loadSections() {
-        let data = loader!.loadDataFromPath("?record=sections", error: nil)
-        
-        let str = NSString(data: data, encoding: NSUTF8StringEncoding)
-        
-        println("Data: \(str)")
-        
-        let json = JSON(data: data)
-        var tempSections: Sections = Sections();
-        
-        for (index, sectionJSON) in json["sections"] {
-            
-            let tempSection = Section()
-            
-            tempSection.course = sectionJSON["course"].stringValue
-            tempSection.dept = sectionJSON["dept"].stringValue
-            tempSection.term = sectionJSON["term"].stringValue
-            tempSection.termname = sectionJSON["termname"].stringValue
-            tempSection.title = sectionJSON["title"].stringValue
-            
-            tempSections.appendSection(tempSection)
-        }
-        
-        sections = tempSections
-    }
-    
-    func refreshSections() {
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,10 +70,11 @@ class SectionTableViewController: UITableViewController {
         // Configure the cell...
         let section = sections?.getSectionAtPos(indexPath.row)
         cell.section = section
+        loader?.setCurrentSection(section!)
+        
         
         cell.textLabel?.text = section?.title
-        cell.detailTextLabel?.text = section?.course
-        
+        cell.detailTextLabel?.text = section!.dept! + "-" + section!.course! + ", " + section!.termname!
         return cell
     }
     
@@ -113,9 +84,9 @@ class SectionTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        if segue.identifier == "quakeDetails" {
+        if segue.identifier == "sectionToEnrollmentSegue" {
             if let dest = segue.destinationViewController as? EnrollmentTableViewController, let cell = sender as? SectionTableViewCell {
-                //                dest.quake = cell.quake
+                dest.loader = loader
             }
         }
     }

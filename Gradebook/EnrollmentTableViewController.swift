@@ -15,18 +15,48 @@ class EnrollmentTableViewCell: UITableViewCell {
 
 class EnrollmentTableViewController: UITableViewController {
     
-    var loader: GradebookURLLoader?
+    var loader: GradebookLoader? {
+        didSet {
+            enrollments = loader!.loadEnrollments()
+        }
+    }
     
-//    var quakes: Earthquakes? {
-//        didSet {
-//            tableView.reloadData()
-//            quakes?.count.addCallback {
-//                [unowned self] (oldValue: Int?, newValue: Int) -> Void in
-//                self.tableView.reloadData()
+    var enrollments: Enrollments? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+//    func loadEnrollments() {
+//        if(loader != nil && section != nil) {
+//            let enrollmentsUrl: String = "?record=enrollments&term=" + section!.term! + "&course=" + section!.course!
+//            
+//            let data = loader!.loadDataFromPath(enrollmentsUrl, error: nil)
+//            
+//            let str = NSString(data: data, encoding: NSUTF8StringEncoding)
+//            
+//            println("Data: \(str)")
+//            
+//            let json = JSON(data: data)
+//            var tempEnrollments: Enrollments = Enrollments();
+//            
+//            for (index, enrollmentJSON) in json["enrollments"] {
+//                
+//                let tempEnrollment = Enrollment()
+//                
+//                tempEnrollment.first_name = enrollmentJSON["first_name"].stringValue
+//                tempEnrollment.middle_name = enrollmentJSON["middle_name"].stringValue
+//                tempEnrollment.last_name = enrollmentJSON["last_name"].stringValue
+//                tempEnrollment.username = enrollmentJSON["usernmae"].stringValue
+//                
+//                tempEnrollments.appendEnrollment(tempEnrollment)
 //            }
+//            
+//            enrollments = tempEnrollments
+//
 //        }
 //    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // println("view did load")

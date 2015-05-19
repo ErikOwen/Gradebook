@@ -22,6 +22,7 @@
 		A630CDDE1B0504E700DACFD8 /* AssignmentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A630CDDD1B0504E700DACFD8 /* AssignmentTableViewController.swift */; };
 		A630CDE21B0505C900DACFD8 /* ScoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A630CDE11B0505C900DACFD8 /* ScoreTableViewController.swift */; };
 		A630CDE41B05086100DACFD8 /* ModelObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A630CDE31B05086100DACFD8 /* ModelObjects.swift */; };
+		A6C207051B0BEC7700B32DCE /* GradebookLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C207041B0BEC7700B32DCE /* GradebookLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		A630CDDD1B0504E700DACFD8 /* AssignmentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentTableViewController.swift; sourceTree = "<group>"; };
 		A630CDE11B0505C900DACFD8 /* ScoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewController.swift; sourceTree = "<group>"; };
 		A630CDE31B05086100DACFD8 /* ModelObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelObjects.swift; sourceTree = "<group>"; };
+		A6C207041B0BEC7700B32DCE /* GradebookLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradebookLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			children = (
 				A630CDAA1B0261AD00DACFD8 /* SwiftyJSON.swift */,
 				A630CD801AF91B2700DACFD8 /* AppDelegate.swift */,
+				A6C207041B0BEC7700B32DCE /* GradebookLoader.swift */,
 				A630CD821AF91B2700DACFD8 /* LoginViewController.swift */,
 				A630CD841AF91B2700DACFD8 /* Main.storyboard */,
 				A630CD871AF91B2700DACFD8 /* Images.xcassets */,
@@ -257,6 +260,7 @@
 				A630CD831AF91B2700DACFD8 /* LoginViewController.swift in Sources */,
 				A630CD811AF91B2700DACFD8 /* AppDelegate.swift in Sources */,
 				A630CDA61B0259F400DACFD8 /* GradebookURLLoader.m in Sources */,
+				A6C207051B0BEC7700B32DCE /* GradebookLoader.swift in Sources */,
 				A630CDD81B05001600DACFD8 /* EnrollmentTableViewController.swift in Sources */,
 				A630CDE41B05086100DACFD8 /* ModelObjects.swift in Sources */,
 				A630CDAB1B0261AD00DACFD8 /* SwiftyJSON.swift in Sources */,
@@ -464,6 +468,7 @@
 				A630CD9C1AF91B2700DACFD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A630CD9D1AF91B2700DACFD8 /* Build configuration list for PBXNativeTarget "GradebookTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +477,7 @@
 				A630CD9F1AF91B2700DACFD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

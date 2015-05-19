@@ -259,6 +259,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="kWb-6e-kej" kind="show" identifier="sectionToEnrollmentSegue" id="PAs-i7-uGO"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

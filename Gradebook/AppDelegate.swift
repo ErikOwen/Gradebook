@@ -12,10 +12,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var loader: GradebookURLLoader?
+    var loader: GradebookLoader?
     
     func setupLoader() {
-        loader = GradebookURLLoader()
+        loader = GradebookLoader()
         
         if let vc = window?.rootViewController?.childViewControllers[0] as? LoginViewController {
             vc.loader = loader

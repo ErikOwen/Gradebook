@@ -10,7 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    var loader: GradebookURLLoader?
+    var loader: GradebookLoader?
 
     
     @IBAction func loginButtonPressed(sender: AnyObject) {
@@ -76,8 +76,7 @@ class LoginViewController: UIViewController {
                 return false;
             }
             else {
-                loader!.baseURL = baseURL
-                if loader!.loginWithUsername(name, andPassword: password) {
+                if loader!.loginWithUsername(name, password: password, baseURL: baseURL) {
                     println("Auth worked!")
                     return true;
                 }
@@ -86,7 +85,6 @@ class LoginViewController: UIViewController {
                     presentLoginErrorPopUp()
                     return false;
                 }
-
             }
         }
         
