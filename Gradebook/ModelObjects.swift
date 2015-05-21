@@ -80,7 +80,7 @@ class Enrollments {
 class UserScore {
     var name: String?
     var max_points: Int?
-    var scores: [Score]?
+    var scores: Scores?
 }
 
 class UserScores {
@@ -104,4 +104,22 @@ class UserScores {
 class Score {
     var score: Int?
     var displayScore: String?
+}
+
+class Scores {
+    private var _scores: [Score] = []
+    
+    var scores: [Score] {
+        get {
+            return _scores
+        }
+    }
+    
+    func appendScore(score: Score) {
+        _scores.append(score);
+    }
+    
+    func removeAllEnrollments() {
+        _scores.removeAll(keepCapacity: true);
+    }
 }

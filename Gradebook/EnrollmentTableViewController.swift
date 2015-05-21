@@ -69,8 +69,6 @@ class EnrollmentTableViewController: UITableViewController {
         let enrollment = enrollments?.getEnrollmentnAtPos(indexPath.row)
         cell.enrollment = enrollment
         
-        println("here is the username: " + enrollment!.username!);
-        
         cell.textLabel?.text = enrollment!.first_name! + " " +  enrollment!.middle_name! + " " + enrollment!.last_name!
         cell.detailTextLabel?.text = enrollment!.username!
         
@@ -83,9 +81,10 @@ class EnrollmentTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        if segue.identifier == "quakeDetails" {
-            if let dest = segue.destinationViewController as? AssignmentTableViewController, let cell = sender as? SectionTableViewCell {
-//                dest.quake = cell.quake
+        if segue.identifier == "enrollmentToAssignmentSegue" {
+            if let dest = segue.destinationViewController as? AssignmentTableViewController, let cell = sender as? EnrollmentTableViewCell {
+                loader?.setCurrentEnrollment(cell.enrollment!)
+                dest.loader = loader
             }
         }
     }

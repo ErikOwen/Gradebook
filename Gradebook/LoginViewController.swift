@@ -45,6 +45,15 @@ class LoginViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated);
+        usernameInput.text = ""
+        passwordInput.text = ""
+        baseUrlInput.text = "https://users.csc.calpoly.edu/~bellardo/cgi-bin/grades.json"
+        
+        
+    }
+    
     func presentErrorPopUp() {
         let alertController = UIAlertController(title: "Wrong Base URL", message:
         "The base URL must be either https://users.csc.calpoly.edu/~bellardo/cgi-bin/grades.json or https://users.csc.calpoly.edu/~bellardo/cgi-bin/test/grades.json", preferredStyle: UIAlertControllerStyle.Alert)
@@ -95,6 +104,8 @@ class LoginViewController: UIViewController {
         if segue.identifier == "loginToSectionSegue" {
             let dest: SectionTableViewController = segue.destinationViewController as! SectionTableViewController
             dest.loader = loader
+            
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         }
     }
     

@@ -100,4 +100,40 @@ class GradebookLoader {
         
         return tempEnrollments
     }
+    
+    func loadUserScores() -> UserScores {
+        let userScoresUrl: String = "?record=enrollments&term=" + getCurrentSection().term! + "&course=" + getCurrentSection().course! + "&user=" + getCurrentEnrollment().username!
+        
+        let data = _loader.loadDataFromPath(userScoresUrl, error: nil)
+        
+        let str = NSString(data: data, encoding: NSUTF8StringEncoding)
+        
+        println("Data: \(str)")
+        
+        let json = JSON(data: data)
+        var tempUserScores: UserScores = UserScores();
+        
+        for (index, userScoreJSON) in json["userscores"] {
+            
+            let tempUserScore = UserScore()
+            
+            tempUserScore.name = userScoreJSON["name"].stringValue
+            tempUserScore.max_points = userScoreJSON["max_points"].intValue
+            tempUserScore.scores = Scores()
+            
+            for scoreJSON in userScoreJSON["scores"] {
+                var tempScore: Score = Score()
+                
+//                tempScore.displayScore = scoreJSON["displayScore"].stringValue
+//                tempScore.score = scoreJSON["score"].intValue
+                
+                tempUserScore.scores?.appendScore(tempScore)
+            }
+            
+            tempUserScores.appendUserScore(tempUserScore)
+        }
+        
+        println("UserScores object: \(tempUserScores)")
+        return tempUserScores
+    }
 }

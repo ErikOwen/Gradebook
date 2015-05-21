@@ -11,22 +11,22 @@ import Foundation
 import UIKit
 
 class AssignmentTableViewCell: UITableViewCell {
-    //    var quake: Earthquake?
+        var userScore: UserScore?
 }
 
 class AssignmentTableViewController: UITableViewController {
     
-    var loader: GradebookURLLoader?
+    var loader: GradebookLoader? {
+        didSet {
+             userScores = loader!.loadUserScores()
+        }
+    }
     
-    //    var quakes: Earthquakes? {
-    //        didSet {
-    //            tableView.reloadData()
-    //            quakes?.count.addCallback {
-    //                [unowned self] (oldValue: Int?, newValue: Int) -> Void in
-    //                self.tableView.reloadData()
-    //            }
-    //        }
-    //    }
+    var userScores: UserScores? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

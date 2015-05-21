@@ -70,8 +70,6 @@ class SectionTableViewController: UITableViewController {
         // Configure the cell...
         let section = sections?.getSectionAtPos(indexPath.row)
         cell.section = section
-        loader?.setCurrentSection(section!)
-        
         
         cell.textLabel?.text = section?.title
         cell.detailTextLabel?.text = section!.dept! + "-" + section!.course! + ", " + section!.termname!
@@ -86,6 +84,7 @@ class SectionTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "sectionToEnrollmentSegue" {
             if let dest = segue.destinationViewController as? EnrollmentTableViewController, let cell = sender as? SectionTableViewCell {
+                loader?.setCurrentSection(cell.section!)
                 dest.loader = loader
             }
         }
