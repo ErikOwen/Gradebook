@@ -99,11 +99,20 @@ class UserScores {
     func removeAllEnrollments() {
         _userScores.removeAll(keepCapacity: true);
     }
+    
+    func getSize() -> Int {
+        return _userScores.count
+    }
+    
+    func getUserScoreAtPos(index: Int) -> UserScore {
+        return _userScores[index]
+    }
 }
 
 class Score {
     var score: Int?
     var displayScore: String?
+    var max_points: Int?
 }
 
 class Scores {

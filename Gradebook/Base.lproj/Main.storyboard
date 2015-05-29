@@ -154,6 +154,13 @@
                                 <exclude reference="Cf9-OD-ct5"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="1Ye-Ge-Mhm"/>
+                                <exclude reference="bZY-A8-0wm"/>
+                                <exclude reference="oIJ-uT-v1B"/>
+                                <exclude reference="BVK-WR-72a"/>
+                                <exclude reference="Z0p-db-QfH"/>
+                                <exclude reference="Ghh-Sh-FAc"/>
+                                <exclude reference="ePG-IJ-2Ih"/>
                                 <exclude reference="cKZ-P6-Kzv"/>
                                 <exclude reference="p9i-1S-51c"/>
                                 <exclude reference="B8v-ca-s5U"/>
@@ -168,15 +175,8 @@
                                 <exclude reference="GoZ-Nz-jdc"/>
                                 <exclude reference="UOh-yl-TtW"/>
                                 <exclude reference="o4v-qD-lwx"/>
-                                <exclude reference="BVK-WR-72a"/>
-                                <exclude reference="Z0p-db-QfH"/>
-                                <exclude reference="1Ye-Ge-Mhm"/>
-                                <exclude reference="bZY-A8-0wm"/>
-                                <exclude reference="oIJ-uT-v1B"/>
                                 <exclude reference="IV8-IC-7jz"/>
                                 <exclude reference="hhc-HE-OW7"/>
-                                <exclude reference="Ghh-Sh-FAc"/>
-                                <exclude reference="ePG-IJ-2Ih"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -186,6 +186,13 @@
                                 <include reference="Cf9-OD-ct5"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="1Ye-Ge-Mhm"/>
+                                <include reference="bZY-A8-0wm"/>
+                                <include reference="oIJ-uT-v1B"/>
+                                <include reference="BVK-WR-72a"/>
+                                <include reference="Z0p-db-QfH"/>
+                                <include reference="Ghh-Sh-FAc"/>
+                                <include reference="ePG-IJ-2Ih"/>
                                 <include reference="cKZ-P6-Kzv"/>
                                 <include reference="p9i-1S-51c"/>
                                 <include reference="B8v-ca-s5U"/>
@@ -200,15 +207,8 @@
                                 <include reference="GoZ-Nz-jdc"/>
                                 <include reference="UOh-yl-TtW"/>
                                 <include reference="o4v-qD-lwx"/>
-                                <include reference="BVK-WR-72a"/>
-                                <include reference="Z0p-db-QfH"/>
-                                <include reference="1Ye-Ge-Mhm"/>
-                                <include reference="bZY-A8-0wm"/>
-                                <include reference="oIJ-uT-v1B"/>
                                 <include reference="IV8-IC-7jz"/>
                                 <include reference="hhc-HE-OW7"/>
-                                <include reference="Ghh-Sh-FAc"/>
-                                <include reference="ePG-IJ-2Ih"/>
                             </mask>
                         </variation>
                     </view>
@@ -328,11 +328,11 @@
             <objects>
                 <tableViewController id="ZIC-Hf-gM5" customClass="AssignmentTableViewController" customModule="Gradebook" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xxN-d4-ZaN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="iUA-OD-LZ5" detailTextLabel="eb8-0L-JFE" style="IBUITableViewCellStyleSubtitle" id="QPj-WQ-yzB" customClass="AssignmentTableViewCell" customModule="Gradebook" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="assignmentSubtitleCell" textLabel="iUA-OD-LZ5" detailTextLabel="eb8-0L-JFE" style="IBUITableViewCellStyleSubtitle" id="QPj-WQ-yzB" customClass="AssignmentTableViewCell" customModule="Gradebook" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QPj-WQ-yzB" id="oil-9r-O7g">

@@ -58,28 +58,20 @@ class AssignmentTableViewController: UITableViewController {
         // Return the number of rows in the section.
         // println("count for section \(section)")
         
-        //        if let count =  quakes?.quakes.count {
-        //            return count
-        //        }
+        if let userScores =  userScores {
+            return userScores.getSize()
+        }
         
         return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("subtitleCell", forIndexPath: indexPath) as! SectionTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("assignmentSubtitleCell", forIndexPath: indexPath) as! AssignmentTableViewCell
         
-        // Configure the cell...
-        //        let quake = quakes?.quakes[indexPath.row]
-        //        cell.quake = quake
-        if indexPath.row < 5 {
-            cell.textLabel?.textColor = UIColor.redColor()
-        }
-        else {
-            cell.textLabel?.textColor = UIColor.blackColor()
-        }
-        
-        //        cell.textLabel?.text = quake?.place
-        //        cell.detailTextLabel?.text = quake?.mag
+        let assignment = userScores?.getUserScoreAtPos(indexPath.row)
+        cell.userScore = assignment
+        cell.textLabel?.text = assignment?.name
+        cell.detailTextLabel?.text = "Out of " + String(stringInterpolationSegment: assignment?.max_points) + " points"
         
         return cell
     }
@@ -90,10 +82,11 @@ class AssignmentTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        if segue.identifier == "quakeDetails" {
-//            if let dest = segue.destinationViewController as? ViewController, let cell = sender as? SectionTableViewCell {
-//                //                dest.quake = cell.quake
-//            }
+        if segue.identifier == "assignmentToScoreSegue" {
+            if let dest = segue.destinationViewController as? ScoreTableViewController, let cell = sender as? AssignmentTableViewCell {
+                loader?.setCurrentAssignment(cell.userScore!)
+                dest.loader = loader
+            }
         }
     }
     

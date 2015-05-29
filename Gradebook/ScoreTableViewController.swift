@@ -11,12 +11,12 @@ import Foundation
 import UIKit
 
 class ScoreTableViewCell: UITableViewCell {
-    //    var quake: Earthquake?
+        var score: Score?
 }
 
 class ScoreTableViewController: UITableViewController {
     
-    var loader: GradebookURLLoader?
+    var loader: GradebookLoader?
     
     //    var quakes: Earthquakes? {
     //        didSet {

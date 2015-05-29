@@ -14,6 +14,7 @@ class GradebookLoader {
     
     private var _curSection: Section?
     private var _curEnrollment: Enrollment?
+    private var _curAssignment: UserScore?
     
     init() {
         _loader = GradebookURLLoader()
@@ -35,6 +36,14 @@ class GradebookLoader {
         return _curEnrollment!
     }
     
+    func setCurrentAssignment(curAssignment: UserScore) {
+        _curAssignment = curAssignment
+    }
+    
+    func getCurrentAssignment() -> UserScore {
+        return _curAssignment!
+    }
+    
     func loginWithUsername(name: String, password: String, baseURL: String) -> Bool {
         _loader.baseURL = baseURL
         
@@ -53,7 +62,7 @@ class GradebookLoader {
         
         let str = NSString(data: data, encoding: NSUTF8StringEncoding)
         
-        println("Data: \(str)")
+        println("Sections: \(str)")
         
         let json = JSON(data: data)
         var tempSections: Sections = Sections();
@@ -81,7 +90,7 @@ class GradebookLoader {
         
         let str = NSString(data: data, encoding: NSUTF8StringEncoding)
         
-        println("Data: \(str)")
+        println("Enrollments: \(str)")
         
         let json = JSON(data: data)
         var tempEnrollments: Enrollments = Enrollments();
@@ -102,13 +111,13 @@ class GradebookLoader {
     }
     
     func loadUserScores() -> UserScores {
-        let userScoresUrl: String = "?record=enrollments&term=" + getCurrentSection().term! + "&course=" + getCurrentSection().course! + "&user=" + getCurrentEnrollment().username!
+        let userScoresUrl: String = "?record=userscores&term=" + getCurrentSection().term! + "&course=" + getCurrentSection().course! + "&user=" + getCurrentEnrollment().username!
         
         let data = _loader.loadDataFromPath(userScoresUrl, error: nil)
         
         let str = NSString(data: data, encoding: NSUTF8StringEncoding)
         
-        println("Data: \(str)")
+        println("UserScores: \(str)")
         
         let json = JSON(data: data)
         var tempUserScores: UserScores = UserScores();
@@ -121,11 +130,12 @@ class GradebookLoader {
             tempUserScore.max_points = userScoreJSON["max_points"].intValue
             tempUserScore.scores = Scores()
             
-            for scoreJSON in userScoreJSON["scores"] {
+            for scoreJSON in userScoreJSON["scores"].arrayValue {
                 var tempScore: Score = Score()
                 
-//                tempScore.displayScore = scoreJSON["displayScore"].stringValue
-//                tempScore.score = scoreJSON["score"].intValue
+                tempScore.displayScore = scoreJSON["displayScore"].stringValue
+                tempScore.score = scoreJSON["score"].intValue
+                tempScore.max_points = userScoreJSON["max_points"].intValue
                 
                 tempUserScore.scores?.appendScore(tempScore)
             }
@@ -133,7 +143,6 @@ class GradebookLoader {
             tempUserScores.appendUserScore(tempUserScore)
         }
         
-        println("UserScores object: \(tempUserScores)")
         return tempUserScores
     }
 }
