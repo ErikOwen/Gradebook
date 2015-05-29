@@ -17,6 +17,8 @@ class EnrollmentTableViewController: UITableViewController {
     
     var loader: GradebookLoader? {
         didSet {
+            var section : Section? = loader!.getCurrentSection()
+            self.title = "Enrollments for " + section!.dept! + "-" + section!.course! + ", " + section!.termname!
             enrollments = loader!.loadEnrollments()
         }
     }

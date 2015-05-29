@@ -19,6 +19,8 @@ class ScoreTableViewController: UITableViewController {
     var loader: GradebookLoader? {
         didSet {
             scores = loader!.loadScores()
+            var assignment: UserScore? = loader!.getCurrentAssignment()
+            self.title = "Scores for " + assignment!.name!
         }
     }
     

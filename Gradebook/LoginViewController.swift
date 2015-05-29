@@ -43,6 +43,8 @@ class LoginViewController: UIViewController {
         /*Makes sure the password input is hidden*/
         passwordInput.secureTextEntry = true;
         
+        self.title = "Cal Poly Login"
+        
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -18,7 +18,9 @@ class AssignmentTableViewController: UITableViewController {
     
     var loader: GradebookLoader? {
         didSet {
-             userScores = loader!.loadUserScores()
+            userScores = loader!.loadUserScores()
+            var enrollment: Enrollment? = loader!.getCurrentEnrollment()
+            self.title = "Assignments for " + enrollment!.first_name! + " " +  enrollment!.middle_name! + " " + enrollment!.last_name!
         }
     }
     

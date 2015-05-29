@@ -31,7 +31,7 @@ class SectionTableViewController: UITableViewController {
         super.viewDidLoad()
         // println("view did load")
         tableView.reloadData()
-        
+        self.title = "Sections"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
