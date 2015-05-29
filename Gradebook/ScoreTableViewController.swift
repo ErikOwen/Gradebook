@@ -16,17 +16,17 @@ class ScoreTableViewCell: UITableViewCell {
 
 class ScoreTableViewController: UITableViewController {
     
-    var loader: GradebookLoader?
+    var loader: GradebookLoader? {
+        didSet {
+            scores = loader!.loadScores()
+        }
+    }
     
-    //    var quakes: Earthquakes? {
-    //        didSet {
-    //            tableView.reloadData()
-    //            quakes?.count.addCallback {
-    //                [unowned self] (oldValue: Int?, newValue: Int) -> Void in
-    //                self.tableView.reloadData()
-    //            }
-    //        }
-    //    }
+    var scores: Scores? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,28 +58,20 @@ class ScoreTableViewController: UITableViewController {
         // Return the number of rows in the section.
         // println("count for section \(section)")
         
-        //        if let count =  quakes?.quakes.count {
-        //            return count
-        //        }
+        if let scores = scores {
+            return scores.getSize()
+        }
         
         return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("subtitleCell", forIndexPath: indexPath) as! SectionTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("scoreSubtitleCell", forIndexPath: indexPath) as! ScoreTableViewCell
         
-        // Configure the cell...
-        //        let quake = quakes?.quakes[indexPath.row]
-        //        cell.quake = quake
-        if indexPath.row < 5 {
-            cell.textLabel?.textColor = UIColor.redColor()
-        }
-        else {
-            cell.textLabel?.textColor = UIColor.blackColor()
-        }
-        
-        //        cell.textLabel?.text = quake?.place
-        //        cell.detailTextLabel?.text = quake?.mag
+        let score = scores?.getScoreAtPos(indexPath.row)
+        cell.score = score
+        cell.textLabel?.text = "\(score!.score!) / \(score!.max_points!)"
+        cell.detailTextLabel?.text = "Letter grade received: \"\(score!.displayScore!)\""
         
         return cell
     }

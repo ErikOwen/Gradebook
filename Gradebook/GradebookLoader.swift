@@ -133,7 +133,7 @@ class GradebookLoader {
             for scoreJSON in userScoreJSON["scores"].arrayValue {
                 var tempScore: Score = Score()
                 
-                tempScore.displayScore = scoreJSON["displayScore"].stringValue
+                tempScore.displayScore = scoreJSON["display_score"].stringValue
                 tempScore.score = scoreJSON["score"].intValue
                 tempScore.max_points = userScoreJSON["max_points"].intValue
                 
@@ -144,5 +144,9 @@ class GradebookLoader {
         }
         
         return tempUserScores
+    }
+    
+    func loadScores() -> Scores {
+        return _curAssignment!.scores!
     }
 }

@@ -71,7 +71,7 @@ class AssignmentTableViewController: UITableViewController {
         let assignment = userScores?.getUserScoreAtPos(indexPath.row)
         cell.userScore = assignment
         cell.textLabel?.text = assignment?.name
-        cell.detailTextLabel?.text = "Out of " + String(stringInterpolationSegment: assignment?.max_points) + " points"
+        cell.detailTextLabel?.text = "Out of \(assignment!.max_points!) points"
         
         return cell
     }

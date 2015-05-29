@@ -131,4 +131,12 @@ class Scores {
     func removeAllEnrollments() {
         _scores.removeAll(keepCapacity: true);
     }
+    
+    func getSize() -> Int {
+        return _scores.count
+    }
+    
+    func getScoreAtPos(index: Int) -> Score {
+        return _scores[index]
+    }
 }
